@@ -38,26 +38,14 @@ class Discord extends NotificationProvider {
                 let discorddowndata = {
                     username: discordDisplayName,
                     embeds: [{
-                        title: "❌ Your service " + monitorJSON["name"] + " went down. ❌",
-                        color: 16711680,
+                        title: "Modification de status :  " + monitorJSON["name"] + " est inaccessible.",
+                        color: "#EA3526",
                         timestamp: heartbeatJSON["time"],
                         fields: [
                             {
-                                name: "Service Name",
+                                name: "Service impacté :",
                                 value: monitorJSON["name"],
-                            },
-                            {
-                                name: monitorJSON["type"] === "push" ? "Service Type" : "Service URL",
-                                value: this.extractAddress(monitorJSON),
-                            },
-                            {
-                                name: `Time (${heartbeatJSON["timezone"]})`,
-                                value: heartbeatJSON["localDateTime"],
-                            },
-                            {
-                                name: "Error",
-                                value: heartbeatJSON["msg"] == null ? "N/A" : heartbeatJSON["msg"],
-                            },
+                            }
                         ],
                     }],
                 };
@@ -75,21 +63,13 @@ class Discord extends NotificationProvider {
                 let discordupdata = {
                     username: discordDisplayName,
                     embeds: [{
-                        title: "✅ Your service " + monitorJSON["name"] + " is up! ✅",
-                        color: 65280,
+                        title: "Service rétabli : " + monitorJSON["name"] + " est de nouveau joignable.",
+                        color: "#50EA26",
                         timestamp: heartbeatJSON["time"],
                         fields: [
                             {
-                                name: "Service Name",
+                                name: "Service impacté :",
                                 value: monitorJSON["name"],
-                            },
-                            {
-                                name: monitorJSON["type"] === "push" ? "Service Type" : "Service URL",
-                                value: this.extractAddress(monitorJSON),
-                            },
-                            {
-                                name: `Time (${heartbeatJSON["timezone"]})`,
-                                value: heartbeatJSON["localDateTime"],
                             },
                             {
                                 name: "Ping",
